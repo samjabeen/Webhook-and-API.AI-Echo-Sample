@@ -28,7 +28,7 @@ restService.post("/echo", function(req, res) {
     fulfillmentText: speech,
     "payload": {
       "route":"createRecognize",
-      "username": req.body.parameters.user_name
+      "username": req.body.queryResult.parameters.user_name
     }
   });
 });
