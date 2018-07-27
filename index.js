@@ -24,13 +24,22 @@ restService.post("/echo", function(req, res) {
     req.body.queryResult.parameters.echoText
       ? req.body.queryResult.parameters.echoText
       : "Seems like some problem. Speak again.";
-  return res.json({
-    fulfillmentText: speech,
-    "payload": {
-      "route":"createRecognize",
-      "username": req.body.queryResult.parameters.user_name
-    }
-  });
+  if (req.body.queryResult.intent.displayName === 'shop'){
+     return res.json({
+      fulfillmentText: speech,
+      "payload": {
+        "route":"shop"
+      }
+    });
+  } else {
+    return res.json({
+      fulfillmentText: speech,
+      "payload": {
+        "route":"createRecognize",
+        "username": req.body.queryResult.parameters.user_name
+      }
+    });
+  }
 });
 
 restService.post("/audio", function(req, res) {
