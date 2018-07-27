@@ -25,7 +25,11 @@ restService.post("/echo", function(req, res) {
       ? req.body.queryResult.parameters.echoText
       : "Seems like some problem. Speak again.";
   return res.json({
-    fulfillmentText: speech
+    fulfillmentText: speech,
+    "payload": {
+      "route":"createRecognize",
+      "username": req.body.parameters.user_name
+    }
   });
 });
 
