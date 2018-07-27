@@ -16,7 +16,8 @@ restService.use(bodyParser.json());
 restService.post("/echo", function(req, res) {
   
   console.log("----------echo servive START----------");
-  console.log("----------echo servive REQUEST----------",req);
+  console.log("----------echo servive REQUEST----------",req.body);
+  console.log("----------echo servive intent.displayName----------",req.body.queryResult.intent.displayName);
   var speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
