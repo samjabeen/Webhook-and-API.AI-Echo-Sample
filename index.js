@@ -28,14 +28,22 @@ restService.post("/echo", function(req, res) {
      return res.json({
       fulfillmentText: speech,
       "payload": {
-        "route":"shop"
+        "route":"Shop"
       }
     });
-  } else {
+  }
+  else if (req.body.queryResult.intent.displayName === 'home'){
+    return res.json({
+     fulfillmentText: speech,
+     "payload": {
+       "route":"Home"
+     }
+   });
+ } else {
     return res.json({
       fulfillmentText: speech,
       "payload": {
-        "route":"createRecognize",
+        "route":"CreateRecognition",
         "username": req.body.queryResult.parameters.user_name
       }
     });
